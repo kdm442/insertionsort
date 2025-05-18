@@ -1,30 +1,29 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];  // элемент для вставки
+        int j = i - 1;
 
-
-// функция сортировки пузырьком
-void bubble_sort(int* a, size_t size) {
-    for (size_t i = 0; i < size - 1; i++) {
-        for (size_t j = 0; j < size - i - 1; j++) {
-            if (a[j] > a[j + 1]) {
-                swap(a[j], a[j + 1]);
-            }
+        // сдвигаем элементы, которые больше key, вправо
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
         }
+        // вставляем key на нужное место
+        arr[j + 1] = key;
     }
 }
 
-
-
-
-
-//функция вывода массива 
+//Функция вывода массива 
 void printArray(const int* arr, size_t size) {
     for (size_t i = 0; i < size; i++) {
         cout << arr[i] << " ";
     }
     cout << endl;
 }
+
 int main(){
     int n;
     
@@ -42,7 +41,7 @@ int main(){
     cout << "исходный массив: ";
     printArray(arr, n);
 
-    bubble_sort(arr, n);
+    insertionSort(arr, n);
 
     cout << "отсортированный массив : ";
     printArray(arr,n);
